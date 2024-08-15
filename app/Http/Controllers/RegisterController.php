@@ -6,12 +6,12 @@ use App\Models\User;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+//use Illuminate\Foundation\Validation\ValidatesRequests;
+//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-abstract class Controller {
-    use AuthorizesRequests, ValidatesRequests;
-}
+//abstract class Controller {
+//    use AuthorizesRequests, ValidatesRequests;
+//}
 
 use Illuminate\Http\Request;
 class RegisterController extends Controller
@@ -28,7 +28,7 @@ class RegisterController extends Controller
       $request->request->add(['username'=> Str::slug( $request->username)]);
 
       // validacion
-        $this->validate($request, [
+        $request->validate([
             'name' => ['required','min:3','max:30'],
             'username' => ['required','unique:users','min:3','max:20','not_in:twitter,devstagram,editar-perfil,posts'],
             'email' => ['required','unique:users','email','max:60'],

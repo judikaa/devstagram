@@ -8,13 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+//use Illuminate\Foundation\Validation\ValidatesRequests;
+//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-abstract class Controller {
-   use AuthorizesRequests, ValidatesRequests;
-}
-
+//abstract class Controller {
+//    use AuthorizesRequests, ValidatesRequests;
+//}
 
 class PerfilController extends Controller
 {
@@ -26,7 +25,7 @@ class PerfilController extends Controller
     }
     public function store(Request $request){
         $request->request->add(['username'=> Str::slug( $request->username)]);
-        $this->validate($request, [
+        $request->validate([
             'username' => ['required','unique:users,username,'.auth()->user()->id,'min:3','max:20','not_in:twitter,devstagram,editar-perfil,posts'],
             'email' => ['required','unique:users,email,'.auth()->user()->id,'email','max:60'],
             'password' => ['confirmed']
@@ -52,7 +51,7 @@ class PerfilController extends Controller
         $usuario->imagen=$nombreImagen ?? auth()->user()->imagen ?? '';
 
         if ($request->password) {
-            $this->validate($request, [
+            $request->validate([
                 'oldPassword' => ['required','min:6'],
                 'password' => ['confirmed','min:6'],
             ]);    

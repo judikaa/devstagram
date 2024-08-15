@@ -6,16 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-abstract class Controller {
-  use AuthorizesRequests, ValidatesRequests;
-  // use ValidatesRequests;
 
-}
 
 class PostController extends Controller
 {
@@ -36,7 +28,7 @@ class PostController extends Controller
     {
 
         // validacion
-          $this->validate($request, [
+          $request->validate([
               'titulo' => ['required','max:50'],
               'descripcion' => ['required','max:300'],
               'imagen' => ['required'],
@@ -78,7 +70,7 @@ class PostController extends Controller
      
     public function destroy(Post $post)
     {
-      $this->authorize('delete',$post);
+   //   $this->authorize('delete',$post);
       $imagen_path=public_path('uploads/' . $post->imagen);
       if (File::exists($imagen_path)) {
         unlink($imagen_path);

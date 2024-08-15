@@ -6,18 +6,18 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+//use Illuminate\Foundation\Validation\ValidatesRequests;
+//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-abstract class Controller {
-    use AuthorizesRequests, ValidatesRequests;
-}
+//abstract class Controller {
+//    use AuthorizesRequests, ValidatesRequests;
+//}
 
 class ComentarioController extends Controller
 {
     public function store(Request $request,User $user, Post $post){
         //validar
-        $this->validate($request, [
+        $request->validate([
             'comentario' => ['required','max:255'],
         ]);
         //guardar en la base

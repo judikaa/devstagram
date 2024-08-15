@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+//use Illuminate\Foundation\Validation\ValidatesRequests;
+//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-abstract class Controller {
-    use AuthorizesRequests, ValidatesRequests;
-}
+//abstract class Controller {
+//    use AuthorizesRequests, ValidatesRequests;
+//}
  
 class HomeController extends Controller
 {
